@@ -1,8 +1,6 @@
 <div>
-
-    <h1 class="header">Time to {{title}}</h1>
-
-    <app-timer [targetDate]="date"></app-timer>
+    <app-fit-text>Time to {{ title }}</app-fit-text>
+    <app-fit-text> <app-timer [targetDate]="date"></app-timer></app-fit-text>
     <input [(ngModel)]="title" type="text" placeholder="Edit title">
     <input [(ngModel)]="date" type="date" placeholder="Set a date">
 </div>

@@ -3,12 +3,13 @@ import { DateInputComponent } from "../date-input/date-input.component";
 import { StringInputComponent } from "../string-input/string-input.component";
 import { TimerComponent } from "../timer/timer.component";
 import { FormsModule } from "@angular/forms";
+import { FitTextComponent } from "../fit-text/fit-text.component";
 
 @Component({
     selector: "app-countdown",
     standalone: true,
     templateUrl: "./countdown.component.html",
-    imports: [TimerComponent, DateInputComponent, StringInputComponent, FormsModule],
+    imports: [TimerComponent, DateInputComponent, StringInputComponent, FormsModule, FitTextComponent],
     styleUrls: ["./countdown.component.scss"],
 })
 export class CountdownComponent {

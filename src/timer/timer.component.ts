@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { FitTextComponent } from '../fit-text/fit-text.component';
 
 @Component({
     selector: 'app-timer',
     standalone: true,
     templateUrl: './timer.component.html',
-    imports: [CommonModule],
+    imports: [CommonModule, FitTextComponent],
     styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
