@@ -13,7 +13,7 @@ export class TimerComponent implements OnInit {
     countdown: number = 0;
     countdownInterval!: NodeJS.Timeout;
     @Input() targetDate: string = "";
-    remainingTime!: { days: number, hours: number, minutes: number, seconds: number };
+    remainingTime: { days: number, hours: number, minutes: number, seconds: number } = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
     constructor() {
         this.countdownInterval = setInterval(() => { }, 1000);
@@ -34,7 +34,6 @@ export class TimerComponent implements OnInit {
 
     startCountdown() {
         this.countdownInterval = setInterval(() => {
-
             this.countdown = this.calculateCountdown(new Date(this.targetDate));
             this.calculateRemainingTime();
             if (this.countdown <= 0) {

@@ -1,7 +1,9 @@
-<div class="timer" *ngIf="countdown > 0">
-    <p>{{remainingTime.days}} days, {{remainingTime.hours}} h, {{remainingTime.minutes}} m,
-        {{remainingTime.seconds}} s</p>
-</div>
-<div class="timer" *ngIf="!countdown || countdown <= 0">
-    <p>Timer has expired.</p>
-</div>
+<app-fit-text [dependencies]="[countdown]">
+    <div class="timer" *ngIf="countdown > 0">
+        <p>{{remainingTime.days}} days, {{remainingTime.hours}} h, {{remainingTime.minutes}} m,
+            {{remainingTime.seconds}} s</p>
+    </div>
+    <div class="timer" *ngIf="!countdown || countdown <= 0">
+        <p>BOOM!</p>
+    </div>
+</app-fit-text>
