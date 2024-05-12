@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnDestroy, SimpleChanges } from '@angular/core';
 import { FitTextComponent } from '../fit-text/fit-text.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { FitTextComponent } from '../fit-text/fit-text.component';
     imports: [CommonModule, FitTextComponent],
     styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements OnDestroy {
     countdown: number = 0;
     countdownInterval!: NodeJS.Timeout;
     @Input() targetDate!: Date;
@@ -26,14 +26,12 @@ export class TimerComponent implements OnInit {
 
     ngOnChanges(changes: SimpleChanges) {
         if (!changes) return;
+        this.endCountdown();
         this.startCountdown()
     }
 
-    ngOnInit() {
-        if (this.targetDate) {
-            this.countdown = this.calculateCountdown(this.targetDate);
-        }
-        this.startCountdown();
+    ngOnDestroy() {
+        this.endCountdown();
     }
 
     calculateCountdown(targetDate: Date): number {
@@ -44,12 +42,17 @@ export class TimerComponent implements OnInit {
 
     startCountdown() {
         this.countdownInterval = setInterval(() => {
-            this.countdown = this.calculateCountdown(new Date(this.targetDate));
+            this.countdown = this.calculateCountdown(this.targetDate);
             this.calculateRemainingTime();
             if (this.countdown <= 0) {
-                clearInterval(this.countdownInterval);
+                this.endCountdown();
             }
         }, 1000);
+    }
+
+    endCountdown() {
+        if (!this.countdownInterval) return;
+        clearInterval(this.countdownInterval);
     }
 
     calculateRemainingTime() {
