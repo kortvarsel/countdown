@@ -1,7 +1,5 @@
 <div class="countdown-container">
-    <app-fit-text [dependencies]="[title]">
-        <h1>Time to {{ title }}</h1>
-    </app-fit-text>
+    <app-title-header [title]="title" />
     <app-timer [targetDate]="date" />
 
     <div class="countdown-container-input">
@@ -11,7 +9,7 @@
         </mat-form-field>
         <mat-form-field (click)="picker.open()" appearance="outline">
             <mat-label>Date</mat-label>
-            <input matInput [(ngModel)]="date" [matDatepicker]="picker">
+            <input matInput [(ngModel)]="date" [value]="date" [matDatepicker]="picker">
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
