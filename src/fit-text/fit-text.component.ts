@@ -30,7 +30,7 @@ export class FitTextComponent implements AfterViewInit {
         if (!this.container) return;
         this.containerWidth = window.innerWidth;
         this.contentWidth = this.container.nativeElement.clientWidth;
-        while (this.contentWidth + 32 > this.containerWidth && this.fontSize > 12) {
+        while (this.contentWidth + 32 > this.containerWidth && this.fontSize > 1) {
             this.fontSize -= 1;
             this.container.nativeElement.style.fontSize = `${this.fontSize}px`;
             this.contentWidth = this.container.nativeElement.clientWidth;
