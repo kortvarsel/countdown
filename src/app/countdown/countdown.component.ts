@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
-import { TimerComponent } from "../timer/timer.component";
+import { TimerComponent } from "./components/timer/timer.component";
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
-import { TitleHeaderComponent } from "../title-header/title-header.component";
+import { TitleHeaderComponent } from "./components/title-header/title-header.component";
 
 @Component({
     selector: "app-countdown",
