@@ -1,13 +1,11 @@
 import { Component } from "@angular/core";
-import { DateInputComponent } from "../date-input/date-input.component";
-import { StringInputComponent } from "../string-input/string-input.component";
 import { TimerComponent } from "../timer/timer.component";
 import { FormsModule } from "@angular/forms";
-import { FitTextComponent } from "../fit-text/fit-text.component";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from "@angular/material/core";
+import { TitleHeaderComponent } from "../title-header/title-header.component";
 
 @Component({
     selector: "app-countdown",
@@ -16,7 +14,15 @@ import { MatNativeDateModule } from "@angular/material/core";
     providers: [
         MatDatepickerModule,
     ],
-    imports: [TimerComponent, DateInputComponent, StringInputComponent, FormsModule, FitTextComponent, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule],
+    imports: [
+        TimerComponent,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        TitleHeaderComponent
+    ],
     styleUrls: ["./countdown.component.scss"],
 })
 
@@ -37,23 +43,8 @@ export class CountdownComponent {
         this.saveTitleToLocalStorage(value);
     }
 
-    private _date: string = "";
-
-    get date(): string {
-        return this._date;
-    }
-
-    set date(value: string) {
-        this._date = value;
-        this.saveDateToLocalStorage(value);
-    }
-
     private saveTitleToLocalStorage(title: string) {
         localStorage.setItem('title', title);
-    }
-
-    private saveDateToLocalStorage(date: string) {
-        localStorage.setItem('date', date);
     }
 
     private loadTitleFromLocalStorage(): void {
@@ -63,10 +54,25 @@ export class CountdownComponent {
         }
     }
 
+    private _date!: Date;
+
+    get date(): Date {
+        return this._date;
+    }
+
+    set date(value) {
+        this._date = value;
+        this.saveDateToLocalStorage(value.toString()); // Convert the Date object to a string
+    }
+
+    private saveDateToLocalStorage(date: string) {
+        localStorage.setItem('date', date);
+    }
+
     private loadDateFromLocalStorage(): void {
         const storedDate = localStorage.getItem('date');
         if (storedDate) {
-            this.date = storedDate;
+            this.date = new Date(storedDate);
         }
     }
 }

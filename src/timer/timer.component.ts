@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FitTextComponent } from '../fit-text/fit-text.component';
 
 @Component({
@@ -12,16 +12,31 @@ import { FitTextComponent } from '../fit-text/fit-text.component';
 export class TimerComponent implements OnInit {
     countdown: number = 0;
     countdownInterval!: NodeJS.Timeout;
-    @Input() targetDate: string = "";
-    remainingTime: { days: number, hours: number, minutes: number, seconds: number } = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    @Input() targetDate!: Date;
+    remainingTime: {
+        days: number,
+        hours: number,
+        minutes: number,
+        seconds: number
+    } = {
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0
+        };
 
     constructor() {
         this.countdownInterval = setInterval(() => { }, 1000);
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+        if (!changes) return;
+        this.startCountdown()
+    }
+
     ngOnInit() {
         if (this.targetDate) {
-            this.countdown = this.calculateCountdown(new Date(this.targetDate));
+            this.countdown = this.calculateCountdown(this.targetDate);
         }
         this.startCountdown();
     }
