@@ -1,9 +1,11 @@
-<app-fit-text [dependencies]="[countdown]">
-    <div class="timer" *ngIf="countdown > 0">
+<div class="timer" *ngIf="countdown > 0">
+    <app-fit-text [dependencies]="[countdown]">
         <h2>{{remainingTime.days}} days, {{remainingTime.hours}} h, {{remainingTime.minutes}} m,
             {{remainingTime.seconds}} s</h2>
-    </div>
-    <div class="timer" *ngIf="!countdown || countdown <= 0">
+    </app-fit-text>
+</div>
+<div class="timer" *ngIf="!countdown || countdown <= 0">
+    <app-fit-text [dependencies]="[countdown]">
         <h2>BOOM!</h2>
-    </div>
-</app-fit-text>
+    </app-fit-text>
+</div>
