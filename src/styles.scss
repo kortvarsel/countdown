@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('./assets/fonts/OpenSauceOne-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
+  background-color: #F5F3F3;
+  font-family: 'Open Sauce One', sans-serif;
 }

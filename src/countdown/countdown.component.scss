@@ -1,5 +1,16 @@
-.container-input {
+.countdown-container-input {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
+}
+
+.countdown-container {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-weight: 700;
+    color: #72035D;
 }
