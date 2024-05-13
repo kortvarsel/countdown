@@ -24,6 +24,7 @@ export class FitTextComponent implements AfterViewInit {
 
     ngOnChanges(changes: SimpleChanges) {
         if (!changes) return;
+        //this timeout is to ensure that the view is updated before fitting text
         setTimeout(() => {
             this.fitText();
         }, 1);

@@ -3,18 +3,20 @@
     flex-wrap: wrap;
     justify-content: center;
     width: fit-content;
-    margin-top: 148px;
+    min-width: 19.8rem;
 
     &>* {
         font-size: 1rem;
     }
 
     @media (orientation: landscape) {
+        margin-top: 1.71rem;
         flex-direction: row;
         gap: 1.71rem;
     }
 
     @media (orientation: portrait) {
+        margin-top: 148px;
         flex-direction: column;
         gap: 1.93rem;
     }
