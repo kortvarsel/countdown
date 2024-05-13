@@ -11,9 +11,9 @@ import { Component, ElementRef, ViewChild, AfterViewInit, Input, SimpleChanges }
 export class FitTextComponent implements AfterViewInit {
     @ViewChild('fitTextContainer') container!: ElementRef<HTMLDivElement>;
 
-    fontSize = 16;
-    containerWidth: number = 0;
-    contentWidth: number = 0;
+    private _fontSize = 16;
+    private _windowWidth: number = 0;
+    private _contentWidth: number = 0;
     @Input() dependencies: any[] = [];
 
     ngOnChanges(changes: SimpleChanges) {
@@ -28,17 +28,19 @@ export class FitTextComponent implements AfterViewInit {
 
     private fitText() {
         if (!this.container) return;
-        this.containerWidth = window.innerWidth;
-        this.contentWidth = this.container.nativeElement.clientWidth;
-        while (this.contentWidth + 32 > this.containerWidth && this.fontSize > 1) {
-            this.fontSize -= 1;
-            this.container.nativeElement.style.fontSize = `${this.fontSize}px`;
-            this.contentWidth = this.container.nativeElement.clientWidth;
+        this._windowWidth = Math.min(window.innerWidth, window.outerWidth);
+        this._contentWidth = this.container.nativeElement.clientWidth;
+        while (this._contentWidth + 32 > this._windowWidth && this._fontSize > 1) {
+            this._fontSize -= 1;
+            this.updateFontSize();
         }
-        while (this.containerWidth > this.contentWidth + 32 && this.fontSize < 10000) {
-            this.fontSize += 1;
-            this.container.nativeElement.style.fontSize = `${this.fontSize}px`;
-            this.contentWidth = this.container.nativeElement.clientWidth;
+        while (this._windowWidth > this._contentWidth + 32 && this._fontSize < 10000) {
+            this._fontSize += 1;
+            this.updateFontSize();
         }
+    }
+    private updateFontSize() {
+        this.container.nativeElement.style.fontSize = `${this._fontSize}px`;
+        this._contentWidth = this.container.nativeElement.clientWidth;
     }
 }
