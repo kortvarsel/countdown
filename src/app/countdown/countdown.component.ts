@@ -34,7 +34,7 @@ export class CountdownComponent implements OnInit {
         return this._title;
     }
 
-    set title(value: string) {
+    set title(value) {
         this._title = value;
         this.saveTitleToLocalStorage(value);
     }
@@ -44,6 +44,7 @@ export class CountdownComponent implements OnInit {
     }
 
     set date(value) {
+        if (!value) return;
         this._date = value;
         this.saveDateToLocalStorage(value.toString());
     }
@@ -57,7 +58,7 @@ export class CountdownComponent implements OnInit {
         localStorage.setItem('title', title);
     }
 
-    private loadTitleFromLocalStorage(): void {
+    private loadTitleFromLocalStorage() {
         const storedTitle = localStorage.getItem('title');
         if (storedTitle) {
             this._title = storedTitle;
@@ -68,7 +69,7 @@ export class CountdownComponent implements OnInit {
         localStorage.setItem('date', date);
     }
 
-    private loadDateFromLocalStorage(): void {
+    private loadDateFromLocalStorage() {
         const storedDate = localStorage.getItem('date');
         if (storedDate) {
             this.date = new Date(storedDate);
