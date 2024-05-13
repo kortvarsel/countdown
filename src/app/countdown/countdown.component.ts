@@ -27,8 +27,8 @@ import { TitleHeaderComponent } from "./components/title-header/title-header.com
 })
 
 export class CountdownComponent implements OnInit {
-    private _title: string = '';
-    private _date!: Date;
+    private _title: string = 'Midsummer Eve';
+    private _date: Date = new Date('2024-06-21');
 
     get title(): string {
         return this._title;
