@@ -35,6 +35,8 @@ export class FitTextComponent implements AfterViewInit {
 
     private fitText() {
         if (!this.container) return;
+
+        //Math.min is to avoid case where browser provides inaccurate window.innerWidth in dev responsive mode
         this._windowWidth = Math.min(window.innerWidth, window.outerWidth);
         this._contentWidth = this.container.nativeElement.clientWidth;
         while (this._contentWidth + (this.padding * 2) > this._windowWidth && this._fontSize > this.minFontSize) {

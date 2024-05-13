@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { TimerComponent } from "./components/timer/timer.component";
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,12 +26,7 @@ import { TitleHeaderComponent } from "./components/title-header/title-header.com
     styleUrls: ["./countdown.component.scss"],
 })
 
-export class CountdownComponent {
-    constructor() {
-        this.loadTitleFromLocalStorage();
-        this.loadDateFromLocalStorage();
-    }
-
+export class CountdownComponent implements OnInit {
     private _title: string = '';
     private _date!: Date;
 
@@ -51,6 +46,11 @@ export class CountdownComponent {
     set date(value) {
         this._date = value;
         this.saveDateToLocalStorage(value.toString());
+    }
+
+    ngOnInit() {
+        this.loadTitleFromLocalStorage();
+        this.loadDateFromLocalStorage();
     }
 
     private saveTitleToLocalStorage(title: string) {
