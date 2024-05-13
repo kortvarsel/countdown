@@ -32,7 +32,8 @@ export class CountdownComponent {
         this.loadDateFromLocalStorage();
     }
 
-    private _title = '';
+    private _title: string = '';
+    private _date!: Date;
 
     get title(): string {
         return this._title;
@@ -41,6 +42,15 @@ export class CountdownComponent {
     set title(value: string) {
         this._title = value;
         this.saveTitleToLocalStorage(value);
+    }
+
+    get date(): Date {
+        return this._date;
+    }
+
+    set date(value) {
+        this._date = value;
+        this.saveDateToLocalStorage(value.toString());
     }
 
     private saveTitleToLocalStorage(title: string) {
@@ -52,17 +62,6 @@ export class CountdownComponent {
         if (storedTitle) {
             this._title = storedTitle;
         }
-    }
-
-    private _date!: Date;
-
-    get date(): Date {
-        return this._date;
-    }
-
-    set date(value) {
-        this._date = value;
-        this.saveDateToLocalStorage(value.toString()); // Convert the Date object to a string
     }
 
     private saveDateToLocalStorage(date: string) {

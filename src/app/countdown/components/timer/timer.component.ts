@@ -11,7 +11,7 @@ import { FitTextComponent } from '../fit-text/fit-text.component';
 })
 export class TimerComponent implements OnDestroy {
     countdown: number = 0;
-    countdownInterval!: NodeJS.Timeout;
+    private _countdownInterval!: NodeJS.Timeout;
     @Input() targetDate!: Date;
     remainingTime: RemainingTime = {
         days: 0,
@@ -19,10 +19,6 @@ export class TimerComponent implements OnDestroy {
         minutes: 0,
         seconds: 0
     };
-
-    constructor() {
-        this.countdownInterval = setInterval(() => { }, 1000);
-    }
 
     ngOnChanges(changes: SimpleChanges) {
         if (!changes) return;
@@ -34,14 +30,14 @@ export class TimerComponent implements OnDestroy {
         this.endCountdown();
     }
 
-    calculateCountdown(targetDate: Date): number {
+    private calculateCountdown(targetDate: Date): number {
         const now = new Date();
         const difference = targetDate.getTime() - now.getTime();
         return difference;
     }
 
-    startCountdown() {
-        this.countdownInterval = setInterval(() => {
+    private startCountdown() {
+        this._countdownInterval = setInterval(() => {
             this.countdown = this.calculateCountdown(this.targetDate);
             this.calculateRemainingTime();
             if (this.countdown <= 0) {
@@ -50,12 +46,12 @@ export class TimerComponent implements OnDestroy {
         }, 1000);
     }
 
-    endCountdown() {
-        if (!this.countdownInterval) return;
-        clearInterval(this.countdownInterval);
+    private endCountdown() {
+        if (!this._countdownInterval) return;
+        clearInterval(this._countdownInterval);
     }
 
-    calculateRemainingTime() {
+    private calculateRemainingTime() {
         this.remainingTime = {
             days: Math.floor(this.countdown / (1000 * 60 * 60 * 24)),
             hours: Math.floor((this.countdown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),

@@ -14,7 +14,9 @@ export class FitTextComponent implements AfterViewInit {
     private _fontSize = 16;
     private _windowWidth: number = 0;
     private _contentWidth: number = 0;
-    @Input() dependencies: any[] = [];
+
+    //dependencies type is to avoid 'any' and can be expanded, as of now it only listens to changes to trigger fitText
+    @Input() dependencies: (string | number)[] = [];
 
     ngOnChanges(changes: SimpleChanges) {
         if (!changes) return;
