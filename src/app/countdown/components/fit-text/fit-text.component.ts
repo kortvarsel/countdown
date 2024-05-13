@@ -14,6 +14,7 @@ export class FitTextComponent implements AfterViewInit {
     private _fontSize: number = 16;
     minFontSize: number = 1;
     maxFontSize: number = 10000;
+    sizeIncrement: number = .2;
     private _windowWidth: number = 0;
     private _contentWidth: number = 0;
     padding: number = 16;
@@ -40,11 +41,11 @@ export class FitTextComponent implements AfterViewInit {
         this._windowWidth = Math.min(window.innerWidth, window.outerWidth);
         this._contentWidth = this.container.nativeElement.clientWidth;
         while (this._contentWidth + (this.padding * 2) > this._windowWidth && this._fontSize > this.minFontSize) {
-            this._fontSize -= 1;
+            this._fontSize -= this.sizeIncrement;
             this.updateFontSize();
         }
         while (this._windowWidth > this._contentWidth + (this.padding * 2) && this._fontSize < this.maxFontSize) {
-            this._fontSize += 1;
+            this._fontSize += this.sizeIncrement;
             this.updateFontSize();
         }
     }
