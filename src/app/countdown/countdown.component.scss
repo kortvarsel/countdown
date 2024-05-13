@@ -2,10 +2,26 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
+    width: fit-content;
+    margin-top: 148px;
+
+    &>* {
+        font-size: 1rem;
+    }
+
+    @media (orientation: landscape) {
+        flex-direction: row;
+        gap: 1.71rem;
+    }
+
+    @media (orientation: portrait) {
+        flex-direction: column;
+        gap: 1.93rem;
+    }
 }
 
 .countdown-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }

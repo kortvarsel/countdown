@@ -17,7 +17,7 @@ export class FitTextComponent implements AfterViewInit {
     sizeIncrement: number = .2;
     private _windowWidth: number = 0;
     private _contentWidth: number = 0;
-    padding: number = 16;
+    padding: number = 24;
 
     //dependencies type is to avoid 'any' and can be expanded, as of now it only listens to changes to trigger fitText
     @Input() dependencies: (string | number)[] = [];
